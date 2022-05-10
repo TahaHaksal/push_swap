@@ -6,20 +6,20 @@
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 13:35:11 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/04/11 13:38:47 by mhaksal          ###   ########.fr       */
+/*   Updated: 2022/05/09 15:22:32 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/Header.h"
+#include "../include/Header.h"
 
-void	print_stack(stack *lst)
+void	print_stack(t_stack *lst)
 {
 	while (lst)
 	{
 		ft_printf("%d\n", lst->value);
 		lst = lst->next;
 	}
-	ft_printf("----\nlist");
+	ft_printf("----\nlist\n");
 }
 
 int	stack_check(char **ptr)
@@ -33,8 +33,8 @@ int	stack_check(char **ptr)
 		i = 0;
 		while (ptr[j][i])
 		{
-			if ((ptr[j][i] != ' ' && ptr[j][i] < '0') ||
-			(ptr[j][i] > '9' && ptr[j][i] != '-'))
+			if (((ptr[j][i] != ' ' && ptr[j][i] < '0') ||
+			ptr[j][i] > '9') && ptr[j][i] != '-')
 				return (-1);
 			i++;
 		}
@@ -43,10 +43,10 @@ int	stack_check(char **ptr)
 	return (0);
 }
 
-int	stack_check_2(stack *a)
+int	stack_check_2(t_stack *a)
 {
-	stack	*i;
-	stack	*j;
+	t_stack	*i;
+	t_stack	*j;
 
 	i = a;
 	while (i)
@@ -63,9 +63,9 @@ int	stack_check_2(stack *a)
 	return (0);
 }
 
-stack	*stack_arr(char **ptr)
+t_stack	*stack_arr(char **ptr)
 {
-	stack	*lst;
+	t_stack	*lst;
 	int		i;
 
 	i = 0;
@@ -81,8 +81,8 @@ stack	*stack_arr(char **ptr)
 int	main(int argc, char **argv)
 {
 	int		check;
-	stack	*a;
-	stack	*b;
+	t_stack	*a;
+	t_stack	*b;
 
 	if (argc < 2)
 	{
@@ -97,7 +97,12 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	b = NULL;
-	stack_sort(&a, &b);
-	// print_stack(a);
+	if (stack_size(a) == 3)
+		sort_stack_3(&a);
+	else if (stack_size(a) <= 20)
+		sort_stack_small_num(&a, &b);
+	else
+		stack_sort(&a, &b);
+	stack_clear(&a);
 	return (0);
 }

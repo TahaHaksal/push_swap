@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_new.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 13:28:01 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/05/09 13:39:51 by mhaksal          ###   ########.fr       */
+/*   Created: 2022/02/21 11:38:29 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/02/21 11:38:30 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Header.h"
+#include "libft.h"
 
-t_stack	*stack_new(int value)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	t_stack	*tmp;
+	size_t	a;
+	size_t	b;
 
-	tmp = malloc(sizeof(t_stack));
-	tmp->value = value;
-	tmp->next = NULL;
-	return (tmp);
+	a = 0;
+	b = 0;
+	while (src[a] != '\0')
+		a++;
+	if (size != 0)
+	{
+		while (src[b] != '\0' && b < size - 1)
+		{
+			dest[b] = src[b];
+			b++;
+		}
+		dest[b] = '\0';
+	}
+	return (a);
 }

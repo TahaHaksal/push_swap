@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_funcs.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/09 13:27:58 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/05/09 13:39:45 by mhaksal          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/Header.h"
 
-stack	*stack_last(stack *lst)
+t_stack	*stack_last(t_stack *lst)
 {
 	if (!lst)
 		return (lst);
@@ -11,9 +23,9 @@ stack	*stack_last(stack *lst)
 	return (lst);
 }
 
-void	stack_append(stack **lst, stack *new)
+void	stack_append(t_stack **lst, t_stack *new)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	if (!*lst)
 	{
@@ -24,7 +36,7 @@ void	stack_append(stack **lst, stack *new)
 	tmp->next = new;
 }
 
-void	stack_prepend(stack **lst, stack *new)
+void	stack_prepend(t_stack **lst, t_stack *new)
 {
 	if (!*lst)
 		*lst = new;
@@ -35,7 +47,7 @@ void	stack_prepend(stack **lst, stack *new)
 	}
 }
 
-int	stack_a_is_sorted(stack *lst)
+int	stack_a_is_sorted(t_stack *lst)
 {
 	if (!lst)
 		return (0);

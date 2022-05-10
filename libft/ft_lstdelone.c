@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_new.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 13:28:01 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/05/09 13:39:51 by mhaksal          ###   ########.fr       */
+/*   Created: 2022/02/21 11:37:21 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/02/21 12:34:23 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Header.h"
+#include "libft.h"
 
-t_stack	*stack_new(int value)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	t_stack	*tmp;
-
-	tmp = malloc(sizeof(t_stack));
-	tmp->value = value;
-	tmp->next = NULL;
-	return (tmp);
+	(*del)(lst->content);
+	free(lst);
 }

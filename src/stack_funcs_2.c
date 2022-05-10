@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_funcs_2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/09 13:27:54 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/05/09 13:39:44 by mhaksal          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/Header.h"
 
-stack	*find_largest(stack **lst)
+t_stack	*find_largest(t_stack **lst)
 {
-	stack	*tmp;
-	stack	*needle;
+	t_stack	*tmp;
+	t_stack	*needle;
 
 	if (!(*lst))
 		return (NULL);
@@ -18,9 +30,9 @@ stack	*find_largest(stack **lst)
 	return (tmp);
 }
 
-stack	*smallest_big_equal(stack *lst, int needle)
+t_stack	*smallest_big_equal(t_stack *lst, int needle)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	tmp = find_largest(&lst);
 	while (lst)
@@ -34,7 +46,7 @@ stack	*smallest_big_equal(stack *lst, int needle)
 	return (tmp);
 }
 
-int	stack_index(stack *lst, stack *needle)
+int	stack_index(t_stack *lst, t_stack *needle)
 {
 	int	i;
 
@@ -49,7 +61,7 @@ int	stack_index(stack *lst, stack *needle)
 	return (i);
 }
 
-int	find_smaller_than_mid(stack	*lst, stack *mid)
+int	find_smaller_than_mid(t_stack	*lst, t_stack *mid)
 {
 	while (lst)
 	{

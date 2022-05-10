@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_new.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 13:28:01 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/05/09 13:39:51 by mhaksal          ###   ########.fr       */
+/*   Created: 2022/02/21 11:38:09 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/02/21 12:15:29 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Header.h"
+#include "libft.h"
 
-t_stack	*stack_new(int value)
+char	*ft_strchr(const char *s, int c)
 {
-	t_stack	*tmp;
+	int	i;
 
-	tmp = malloc(sizeof(t_stack));
-	tmp->value = value;
-	tmp->next = NULL;
-	return (tmp);
+	i = 0;
+	if (!*s && c == '\0')
+		return ((char *)s);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (unsigned char)c)
+			return ((char *)s + i);
+		if (s[i + 1] == '\0' && c == '\0')
+			return ((char *)s + i + 1);
+		i++;
+	}
+	return (NULL);
 }

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_clear.c                                      :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 13:39:28 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/04/11 13:39:29 by mhaksal          ###   ########.fr       */
+/*   Created: 2022/02/21 11:36:55 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/02/21 11:37:02 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/Header.h"
+#include "libft.h"
 
-void	stack_clear(stack **lst)
+int	ft_isascii(int c)
 {
-	stack	*tmp;
-
-	if (lst)
+	if (c >= 0 && c <= 127)
 	{
-		if (!*lst)
-			return ;
-		while (*lst)
-		{
-			tmp = (*lst)->next;
-			free(*lst);
-			*lst = tmp;
-		}
+		return (1);
+	}
+	else
+	{
+		return (0);
 	}
 }

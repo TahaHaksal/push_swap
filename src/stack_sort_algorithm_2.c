@@ -6,15 +6,15 @@
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:02:51 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/04/11 13:42:30 by mhaksal          ###   ########.fr       */
+/*   Updated: 2022/05/09 15:34:07 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/Header.h"
+#include "../include/Header.h"
 
-stack	*last_occur(stack *lst, stack *mid)
+t_stack	*last_occur(t_stack *lst, t_stack *mid)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	tmp = NULL;
 	while (lst)
@@ -28,7 +28,7 @@ stack	*last_occur(stack *lst, stack *mid)
 	return (tmp);
 }
 
-stack	*first_occur(stack *lst, stack *mid)
+t_stack	*first_occur(t_stack *lst, t_stack *mid)
 {
 	if (!lst)
 		return (NULL);
@@ -41,30 +41,37 @@ stack	*first_occur(stack *lst, stack *mid)
 	return (NULL);
 }
 
-stack	*find_av(stack *lst)
+t_stack	*find_av(t_stack *lst)
 {
 	int		i;
-	int		count;
-	stack	*tmp;
+	t_stack	*tmp1;
+	int		small;
+	int		smallest;
 
+	smallest = -2147483648;
+	small = 0;
 	i = 0;
-	count = 0;
-	tmp = lst;
-	if (!lst)
-		return (NULL);
-	while (tmp)
+	while (i < 40 && stack_size(lst) - i > 0)
 	{
-		count += tmp->value;
-		tmp = tmp->next;
+		tmp1 = lst;
+		small = 2147483647;
+		while (tmp1)
+		{
+			if (tmp1->value < small && tmp1->value > smallest)
+				small = tmp1->value;
+			tmp1 = tmp1->next;
+		}
+		smallest = small;
 		i++;
 	}
-	count /= i;
-	return (smallest_big_equal(lst, count));
+	while (lst->value != smallest)
+		lst = lst->next;
+	return (lst);
 }
 
-void	stack_sort_b(stack **lst1, stack **lst2)
+void	stack_sort_b(t_stack **lst1, t_stack **lst2)
 {
-	stack	*largest;
+	t_stack	*largest;
 
 	while (*lst2)
 	{
@@ -84,11 +91,11 @@ void	stack_sort_b(stack **lst1, stack **lst2)
 	}
 }
 
-void	stack_sort(stack **lst1, stack **lst2)
+void	stack_sort(t_stack **lst1, t_stack **lst2)
 {
-	stack	*mid;
-	stack	*first;
-	stack	*last;
+	t_stack	*mid;
+	t_stack	*first;
+	t_stack	*last;
 
 	while (!stack_a_is_sorted(*lst1))
 	{
@@ -97,12 +104,9 @@ void	stack_sort(stack **lst1, stack **lst2)
 		{
 			last = last_occur(*lst1, mid);
 			first = first_occur(*lst1, mid);
-			if (stack_count(*lst1, first, 'b') < stack_count(*lst1, last, 'a') && first)
-			{
-				while ((*lst1)->value != first->value)
-					stack_rotate(lst1, 'a');
-				stack_push(lst1, lst2, 'b');
-			}
+			if (stack_count(*lst1, first, 'b')
+				< stack_count(*lst1, last, 'a') && first)
+				stack_rotate_and_push(lst1, lst2, first);
 			else if (last)
 			{
 				while ((*lst1)->value != last->value)

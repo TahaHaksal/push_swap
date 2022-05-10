@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_push.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/09 13:28:03 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/05/09 13:39:50 by mhaksal          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/Header.h"
 
-void	stack_push(stack **a, stack **b, char format)
+void	stack_push(t_stack **a, t_stack **b, char format)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	if (format == 'a')
 	{

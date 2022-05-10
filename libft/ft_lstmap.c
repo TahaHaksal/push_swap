@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_new.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 13:28:01 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/05/09 13:39:51 by mhaksal          ###   ########.fr       */
+/*   Created: 2022/02/21 11:37:28 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/02/21 11:37:28 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Header.h"
+#include "libft.h"
 
-t_stack	*stack_new(int value)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_stack	*tmp;
+	t_list	*ptr;
+	t_list	*new;
 
-	tmp = malloc(sizeof(t_stack));
-	tmp->value = value;
-	tmp->next = NULL;
-	return (tmp);
+	new = NULL;
+	while (lst != NULL)
+	{
+		ptr = ft_lstnew((*f)(lst -> content));
+		if (!ptr)
+		{
+			ft_lstclear(&new, (*del));
+			return (NULL);
+		}
+		ft_lstadd_back(&new, ptr);
+		lst = lst -> next;
+	}
+	return (new);
 }

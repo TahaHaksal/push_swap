@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_new.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 13:28:01 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/05/09 13:39:51 by mhaksal          ###   ########.fr       */
+/*   Created: 2022/02/21 11:36:22 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/02/21 11:36:28 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Header.h"
+#include "libft.h"
 
-t_stack	*stack_new(int value)
+void	ft_bzero(void *s, size_t n)
 {
-	t_stack	*tmp;
+	size_t	i;
 
-	tmp = malloc(sizeof(t_stack));
-	tmp->value = value;
-	tmp->next = NULL;
-	return (tmp);
+	i = 0;
+	while (i < n)
+	{
+		*(unsigned char *)s = 0;
+		s++;
+		i++;
+	}
 }

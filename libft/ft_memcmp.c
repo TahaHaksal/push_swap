@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_new.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 13:28:01 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/05/09 13:39:51 by mhaksal          ###   ########.fr       */
+/*   Created: 2022/02/21 11:37:39 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/02/21 11:37:40 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Header.h"
+#include "libft.h"
 
-t_stack	*stack_new(int value)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_stack	*tmp;
+	size_t	i;
 
-	tmp = malloc(sizeof(t_stack));
-	tmp->value = value;
-	tmp->next = NULL;
-	return (tmp);
+	i = 0;
+	while (i < n)
+	{
+		if ((*(unsigned char *)s1) != (*(unsigned char *)s2))
+		{
+			return ((*(unsigned char *)s1 + i) - (*(unsigned char *)s2 + i));
+		}
+		s1++;
+		s2++;
+		i++;
+	}
+	return (0);
 }

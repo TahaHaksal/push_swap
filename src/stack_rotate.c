@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_rotate.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/09 13:28:08 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/05/09 13:39:51 by mhaksal          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/Header.h"
 
-void	stack_rotate_both(stack **lst1, stack **lst2)
+void	stack_rotate_both(t_stack **lst1, t_stack **lst2)
 {
 	stack_rotate(lst1, ' ');
 	stack_rotate(lst2, ' ');
 	ft_printf("rr\n");
 }
 
-void	stack_rotate(stack **lst, char format)
+void	stack_rotate(t_stack **lst, char format)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	if (!*lst || !(*lst)->next)
 		return ;

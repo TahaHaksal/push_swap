@@ -4,7 +4,7 @@ NAME = push_swap
 
 CFLAGS = -Werror -Wall -Wextra
 
-SRC = $(shell find src -name "*.c") main.c stack_clear.c stack_sort_algorithm_2.c
+SRC = $(shell find src -name "*.c")
 
 OBJ = $(SRC:.c=.o)
 

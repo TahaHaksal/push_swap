@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_new.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaksal <m.haksal@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 13:28:01 by mhaksal           #+#    #+#             */
-/*   Updated: 2022/05/09 13:39:51 by mhaksal          ###   ########.fr       */
+/*   Created: 2022/02/21 11:38:38 by mhaksal           #+#    #+#             */
+/*   Updated: 2022/02/21 11:45:27 by mhaksal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Header.h"
+#include "libft.h"
 
-t_stack	*stack_new(int value)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_stack	*tmp;
-
-	tmp = malloc(sizeof(t_stack));
-	tmp->value = value;
-	tmp->next = NULL;
-	return (tmp);
+	while (n > 0)
+	{
+		if (*(unsigned char *)s1 > *(unsigned char *)s2)
+			return (1);
+		else if (*(unsigned char *)s2 > *(unsigned char *)s1)
+			return (-1);
+		else if (*(unsigned char *)s1 == '\0' && *(unsigned char *)s2 == '\0')
+			return (0);
+		n--;
+		s1++;
+		s2++;
+	}
+	return (0);
 }
